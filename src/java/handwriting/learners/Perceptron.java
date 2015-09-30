@@ -86,6 +86,14 @@ public class Perceptron extends PerceptronNet {
     public double[] compute(double[] inputs) {
     	checkCompute(inputs);
         /* TODO: Write code to store the result in "outputs" */
+        // i = outputnode ; j = inputnode //
+        for ( int i = 0; i < numOutputNodes(); i++){
+            double curOutputVal = 0.0;
+            for ( int j = 0; j<numInputNodes(); j++){
+                curOutputVal += getWeightFromTo(j, i) * inputs[j];
+            }
+            outputs[i] = sigmoid(curOutputVal);
+        }
         return outputs;
     }
     
@@ -98,6 +106,14 @@ public class Perceptron extends PerceptronNet {
                Calculate how this output wants the weight changed
                Add that result to the delta[][] for that weight
          */
+        /*
+            i = outputNode index ; j = inputNode index;
+         */
+        for (int i =0; i<numOutputNodes(); i++){
+            for(int j =0; j< numInputNodes(); j++){
+
+            }
+        }
     }
     
     // Before calling this method, train() has been called for all input/output pairs
