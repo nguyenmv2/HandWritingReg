@@ -1,7 +1,8 @@
-package handwriting.learners;
-
 import static org.junit.Assert.*;
 
+import handwriting.learners.MultiLayer;
+import handwriting.learners.Perceptron;
+import handwriting.learners.PerceptronNet;
 import org.junit.Test;
 
 public class PerceptronTest {
