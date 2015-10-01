@@ -8,12 +8,15 @@ abstract public class PerceptronNet {
 	abstract public int numOutputNodes();
 	
 	public void trainN(double[][] inputs, double[][] targets, int iterations, double rate) {
+		int count = 0;
 		for (int i = 0; i < iterations; ++i) {
+			count++;
 			for (int j = 0; j < inputs.length; ++j) {
 				train(inputs[j], targets[j], rate);
 			}
 			updateWeights();
 		}
+		System.out.println(count);
 	}
 			
     public static double gradient(double fOfX) {

@@ -84,16 +84,17 @@ public class Perceptron extends PerceptronNet {
     }
     
     public double[] compute(double[] inputs) {
-    	checkCompute(inputs);
+        checkCompute(inputs);
         /* TODO: Write code to store the result in "outputs" */
         // i = outputnode ; j = inputnode //
+
         for ( int i = 0; i < numOutputNodes(); i++){
-            double curOutputVal = 0.0;
-            for ( int j = 0; j<numInputNodes(); j++){
-                curOutputVal += getWeightFromTo(j, i) * inputs[j];
+            for ( int j = 0; j<inputs.length; j++){
+                outputs[i] += weight(j,i)* inputs[j];
             }
-            outputs[i] = sigmoid(curOutputVal);
+            outputs[i] = sigmoid(outputs[i]);
         }
+
         return outputs;
     }
     
@@ -109,11 +110,14 @@ public class Perceptron extends PerceptronNet {
         /*
             i = outputNode index ; j = inputNode index;
          */
-        for (int i =0; i<numOutputNodes(); i++){
-            for(int j =0; j< numInputNodes(); j++){
+        for(int i =0; i < numOutputNodes(); i++){
+             for (int j = 0; j < inputs.length; j++){
 
+                deltas[j][i] = inputs[j]*(error(i)*gradient(output(i)*rate));
             }
         }
+
+
     }
     
     // Before calling this method, train() has been called for all input/output pairs
@@ -132,6 +136,7 @@ public class Perceptron extends PerceptronNet {
     	checkTrain(inputs, targets, rate);
         compute(inputs);
         for (int i = 0; i < numOutputNodes(); ++i) {
+
             setError(i, targets[i] - output(i));
         }
         addToWeightDeltas(inputs, rate);
